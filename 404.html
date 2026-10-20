@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <!-- GitHub Pages sirve esta página en cualquier ruta inexistente (p. ej. /productions/a/b).
+       Este <base> apunta a la raíz del sitio para que las rutas relativas sigan funcionando. -->
+  <script>
+    (function () {
+      var seg = location.pathname.split('/')[1];
+      var base = document.createElement('base');
+      base.href = /\.github\.io$/.test(location.hostname) && seg ? '/' + seg + '/' : './';
+      document.head.appendChild(base);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2F2F2F">
+  <meta name="robots" content="noindex">
+  <title>Página no encontrada · Luz y Sal Productions</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <main class="sec sec--luz notfound" id="contenido">
+    <div class="wrap">
+      <img class="notfound__symbol" src="assets/logo/lys-simbolo-pequeno-crema.svg" alt="" width="32" height="48">
+      <h1 class="display">Página no encontrada.</h1>
+      <a class="btn btn--primary" href="./">Volver al inicio</a>
+    </div>
+  </main>
+</body>
+</html>
