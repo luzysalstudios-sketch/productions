@@ -32,7 +32,7 @@ Luego abre http://localhost:8000/. También funciona abriendo `index.html` direc
 
 - **Textos:** están en `index.html`, ordenados por sección con un comentario arriba de cada una (`<!-- Hero -->`, `<!-- Propósito -->`, etc.). Cambia solo el texto entre etiquetas.
 - **Colores:** solo en `:root`, al inicio de `assets/css/styles.css`. No agregues colores fuera de los tokens.
-- **Enlaces:** Instagram aparece en cuatro lugares de `index.html` (hero, primera serie, tarjeta de Síguenos y footer) y en `sameAs` del JSON-LD. Busca `instagram.com` para encontrarlos.
+- **Enlaces:** Instagram aparece en cuatro lugares de `index.html` (hero, primera serie, tarjeta de Síguenos y footer) y YouTube (`https://www.youtube.com/@LuzySalProductions`) en tres (hero, tarjeta de Síguenos y footer). Ambos están también en `sameAs` del JSON-LD. Busca `instagram.com` o `youtube.com/@` para encontrarlos. No pongas comentarios dentro del bloque JSON-LD: lo invalidan.
 - **Todas las rutas son relativas** (`assets/...`). No uses rutas que empiecen con `/`: el sitio vive en la subcarpeta `/productions/`.
 
 ## Placeholders pendientes
@@ -41,14 +41,10 @@ Números de línea obtenidos con `grep -n` sobre la versión actual de `index.ht
 
 | Dato | Archivo:línea | Estado actual |
 |---|---|---|
-| YouTube · botón del hero | `index.html:81-82` | Botón atenuado «YouTube · Próximamente» |
-| YouTube · tarjeta de Síguenos | `index.html:282-283` | Tarjeta atenuada, sin enlace |
-| YouTube · footer | `index.html:312-313` | Texto atenuado, sin enlace |
-| YouTube · JSON-LD `sameAs` | `index.html:43` | Solo incluye Instagram |
 | Fecha de estreno | `index.html:187` | Muestra «PRÓXIMAMENTE EN YOUTUBE» |
 | Video del primer episodio | `index.html:192-196` | Bloque 16:9 comentado (`ID_DEL_VIDEO`) |
 | Correo · línea de contacto | `index.html:290-291` | Oculta y comentada (`CORREO_CONTACTO`) |
-| Correo · footer | `index.html:314` | Oculto y comentado |
+| Correo · footer | `index.html:313` | Oculto y comentado |
 | Enlace a Luz y Sal Commercial | `index.html:299` | Sin enlace; solo comentario |
 
 Para volver a ubicarlos:
@@ -58,19 +54,6 @@ grep -n "PENDIENTE\|ESTRENO\|VIDEO: reemplazar" index.html
 ```
 
 ## Activar los datos cuando lleguen
-
-### YouTube
-
-1. En cada uno de los tres lugares marcados `YOUTUBE PENDIENTE`, reemplaza el elemento atenuado (`<span ...aria-disabled="true">` o `<div class="follow__card follow__card--disabled" ...>`) por el enlace que aparece en el comentario, y cambia `YOUTUBE_URL` por la URL real del canal.
-2. En la tarjeta de Síguenos, el `<div>` pasa a ser `<a>`: cierra con `</a>` y quita la clase `follow__card--disabled`.
-3. En el JSON-LD agrega la URL a `sameAs`:
-   ```json
-   "sameAs": [
-     "https://www.instagram.com/luzysal_productions/",
-     "https://www.youtube.com/@..."
-   ]
-   ```
-   No pongas comentarios dentro del bloque JSON-LD: lo invalidan.
 
 ### Correo
 
@@ -87,7 +70,7 @@ En `#primera-serie`, cambia el texto de `<p class="status">` por `PRIMER VIDEO �
 1. En `#primera-serie`, busca `<!-- VIDEO: reemplazar al publicar`.
 2. Borra la línea del comentario de apertura, la instrucción que le sigue y el `-->` final, dejando solo el `<div class="video reveal">` con su `<iframe>`.
 3. Cambia `ID_DEL_VIDEO` por el identificador del video (lo que va después de `v=` en la URL de YouTube). El dominio `youtube-nocookie.com` se mantiene.
-4. Cuando el video esté publicado, conviene cambiar también la línea de estado por algo como «Ya disponible en YouTube» y activar YouTube (ver arriba).
+4. Cuando el video esté publicado, conviene cambiar también la línea de estado por algo como «Ya disponible en YouTube».
 
 ### Luz y Sal Commercial
 
